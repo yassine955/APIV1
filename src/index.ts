@@ -34,7 +34,7 @@ const options: ConnectionOptions = {
 const main = async () => {
   const connection = await createConnection(options);
 
-  await connection.runMigrations();
+  // await connection.runMigrations();
 
   const app = express();
 
@@ -258,6 +258,13 @@ const main = async () => {
         });
       })
       .catch((er) => console.error(er));
+  });
+
+  app.use("/", async (_: Request, res: Response) => {
+    res.status(200).send({
+      msg: "WELCOME TO MY API",
+      status: 200,
+    });
   });
 
   app.listen(process.env.PORT, () => {
